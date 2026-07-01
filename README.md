@@ -1,12 +1,10 @@
-# Cute Lamp
+# Goodnight Lamp
 
 A cute desk lamp that drifts off to sleep and wakes up - drawn in **SVG**, lit by **CSS**,
 and switched by a **draggable pull-chain**. Grab the hanging cord, drag it down until it
 *clicks*, and the lamp opens its eyes and turns its light on. Built with plain HTML, CSS,
 and vanilla JavaScript - **zero runtime dependencies**.
-
-Designed as a 9:16 frame so it records cleanly as a vertical Short, but it works as a normal
-interactive web page too.
+interactive web page.
 
 ## Features
 
