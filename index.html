@@ -18,13 +18,11 @@
   <div class="reel">
     <div class="grain" aria-hidden="true"></div>
 
-    <!-- ── title ──────────────────────────────────────────────────── -->
-    <h1 class="title">Cute&nbsp;Lamp</h1>
-
     <!-- ── stage : the lamp character ──────────────────────────────── -->
     <section class="stage" aria-label="A cute desk lamp that wakes up and turns its light on">
+      <div id="goodnight-popup" class="goodnight-popup">Goodnight</div>
       <div class="bob">
-        <svg class="lamp" viewBox="0 0 360 384" role="img" aria-hidden="true">
+        <svg class="lamp is-on" viewBox="0 0 360 384" role="img" aria-hidden="true">
           <defs>
             <linearGradient id="shadeOn" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#c4b9e2"/>
@@ -127,7 +125,7 @@
                  Two nested groups give it a real pendulum whip — the lower
                  cord + bead (.rope-swing) trail the upper part (.rope-sway). -->
             <g class="pull" role="button" tabindex="0"
-               aria-label="Pull the cord to switch the lamp on or off" aria-pressed="false">
+               aria-label="Pull the cord to switch the lamp on or off" aria-pressed="true">
               <g class="rope-sway">
                 <!-- upper cord : hangs from the shade lip -->
                 <path class="rope"       d="M210,236 C210.6,246 211.4,256 212,267" fill="none" stroke="url(#ropeGrad)" stroke-width="3.3" stroke-linecap="round"/>
@@ -152,34 +150,6 @@
         </svg>
       </div>
     </section>
-
-    <!-- ── two source panes : CSS · JS that build & switch the lamp ──── -->
-    <section class="code3" aria-label="The CSS and JS that build the lamp">
-      <article class="pane pane--css">
-        <h2 class="pane__title">CSS</h2>
-        <pre class="code"><code><span class="ln" style="--i:0"><span class="sel">.light</span> <span class="pn">{</span></span>
-<span class="ln" style="--i:1">  <span class="pr">opacity</span><span class="pn">:</span> <span class="nm">0</span><span class="pn">;</span></span>
-<span class="ln" style="--i:2">  <span class="pr">transition</span><span class="pn">:</span> <span class="pr">opacity</span> <span class="nm">.12s</span><span class="pn">;</span></span>
-<span class="ln" style="--i:3">  <span class="pr">filter</span><span class="pn">:</span> <span class="fn">drop-shadow</span><span class="pn">(</span></span>
-<span class="ln" style="--i:4">    <span class="nm">0 0 40px</span> <span class="sw" style="--c:#ffe6a3"></span><span class="vl">#ffe6a3</span><span class="pn">);</span></span>
-<span class="ln" style="--i:5"><span class="pn">}</span></span>
-<span class="ln" style="--i:6"><span class="sel">.lamp.on</span> <span class="sel">.light</span> <span class="pn">{</span></span>
-<span class="ln" style="--i:7">  <span class="pr">opacity</span><span class="pn">:</span> <span class="nm">1</span> <span class="pn">}</span></span>
-</code></pre>
-      </article>
-
-      <article class="pane pane--js">
-        <h2 class="pane__title">JS</h2>
-        <pre class="code"><code><span class="ln" style="--i:0"><span class="cm">// pull the cord to toggle</span></span>
-<span class="ln" style="--i:1"><span class="kw">const</span> <span class="vl">lamp</span> <span class="pn">=</span> <span class="fn">$</span><span class="pn">(</span><span class="st">'.lamp'</span><span class="pn">)</span></span>
-<span class="ln" style="--i:2"><span class="kw">const</span> <span class="vl">cord</span> <span class="pn">=</span> <span class="fn">$</span><span class="pn">(</span><span class="st">'.cord'</span><span class="pn">)</span></span>
-<span class="ln" style="--i:3"><span class="vl">cord</span><span class="pn">.</span><span class="pr">onpointerdown</span> <span class="pn">=</span> <span class="fn">drag</span></span>
-<span class="ln" style="--i:4"><span class="kw">function</span> <span class="fn">drag</span><span class="pn">(</span><span class="vl">e</span><span class="pn">) {</span></span>
-<span class="ln" style="--i:5">  <span class="kw">if</span> <span class="pn">(</span><span class="fn">pull</span><span class="pn">(</span><span class="vl">e</span><span class="pn">)</span> <span class="pn">&gt;</span> <span class="nm">DETENT</span><span class="pn">)</span></span>
-<span class="ln" style="--i:6">    <span class="vl">lamp</span><span class="pn">.</span><span class="vl">classList</span><span class="pn">.</span><span class="fn">toggle</span><span class="pn">(</span><span class="st">'on'</span><span class="pn">)</span></span>
-<span class="ln cur" style="--i:7"><span class="pn">}</span><span class="caret"></span></span>
-</code></pre>
-      </article>
     </section>
   </div>
 

@@ -64,6 +64,15 @@ function toggle() {
   const on = lamp.classList.toggle('is-on');
   setPressed(on);
   playSfx(on ? 'on' : 'off');
+  
+  const popup = document.getElementById('goodnight-popup');
+  if (popup) {
+    if (!on) {
+      popup.classList.add('show');
+    } else {
+      popup.classList.remove('show');
+    }
+  }
 }
 
 function clickPop() {                       // knob pulse at the click moment
