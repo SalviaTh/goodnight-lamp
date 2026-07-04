@@ -3,6 +3,11 @@
    knob pops), and on release it snaps back up with a springy recoil. A tap or
    keyboard press does the same toggle with a quick scripted yank.
 
+   A small color-picker (upper right) lets you recolor the emitted light —
+   yellow, pink, orange, blue, green. It only does anything while the lamp is
+   lit; while the lamp is off it's visibly dimmed and its buttons are disabled,
+   since there's no light to recolor.
+
    The live page never toggles on its own. Self-play exists only behind
    window.start(), which the Shorts recorder calls after its pre-roll. */
 
@@ -25,6 +30,32 @@ measure();
 addEventListener('resize', measure);
 
 const setPressed = on => pull.setAttribute('aria-pressed', String(on));
+
+/* ── the light-color picker ────────────────────────────────────────────── */
+const colorPicker = document.getElementById('color-picker');
+const colorDots   = colorPicker ? [...colorPicker.querySelectorAll('.color-dot')] : [];
+
+function setLightColor(name) {
+  body.dataset.lightColor = name;
+  colorDots.forEach(d => d.setAttribute('aria-pressed', String(d.dataset.color === name)));
+}
+
+function updateColorPickerState() {
+  const on = lamp.classList.contains('is-on');
+  if (!colorPicker) return;
+  colorPicker.dataset.disabled = String(!on);
+  colorDots.forEach(d => { d.disabled = !on; });
+}
+
+colorDots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    if (dot.disabled || !lamp.classList.contains('is-on')) return;
+    setLightColor(dot.dataset.color);
+  });
+});
+
+setLightColor('yellow');       // lamp starts on, yellow, matching the initial markup
+updateColorPickerState();
 
 /* ── click sounds ──────────────────────────────────────────────────────────
    One switch clip in public/sounds/ plays on every toggle (same sound for on
@@ -64,7 +95,8 @@ function toggle() {
   const on = lamp.classList.toggle('is-on');
   setPressed(on);
   playSfx(on ? 'on' : 'off');
-  
+  updateColorPickerState();
+
   const popup = document.getElementById('goodnight-popup');
   if (popup) {
     if (!on) {
@@ -212,6 +244,7 @@ if (reduce) {
   body.classList.add('lit');
   lamp.classList.add('is-on');
   setPressed(true);
+  updateColorPickerState();
 } else if (!new URLSearchParams(location.search).has('record')) {
   setTimeout(typeCode, 450);     // live page auto-reveals; ?record holds for start()
 }
@@ -221,4 +254,5 @@ if (new URLSearchParams(location.search).has('on')) {
   lamp.classList.add('is-on');
   setPressed(true);
   body.classList.add('lit');
+  updateColorPickerState();
 }

@@ -18,6 +18,15 @@
   <div class="reel">
     <div class="grain" aria-hidden="true"></div>
 
+    <!-- ── color picker : switch the light's color (only usable while lit) ── -->
+    <div class="color-picker" id="color-picker" data-disabled="true" role="group" aria-label="Lamp light color">
+      <button class="color-dot" type="button" data-color="yellow" style="--dot:#ffce7a" aria-label="Yellow light" aria-pressed="true" disabled></button>
+      <button class="color-dot" type="button" data-color="pink"   style="--dot:#ff7ab8" aria-label="Pink light"   aria-pressed="false" disabled></button>
+      <button class="color-dot" type="button" data-color="orange" style="--dot:#ff8c3d" aria-label="Orange light" aria-pressed="false" disabled></button>
+      <button class="color-dot" type="button" data-color="blue"   style="--dot:#4fa8ff" aria-label="Blue light"   aria-pressed="false" disabled></button>
+      <button class="color-dot" type="button" data-color="green"  style="--dot:#5bc93f" aria-label="Green light"  aria-pressed="false" disabled></button>
+    </div>
+
     <!-- ── stage : the lamp character ──────────────────────────────── -->
     <section class="stage" aria-label="A cute desk lamp that wakes up and turns its light on">
       <div id="goodnight-popup" class="goodnight-popup">Goodnight</div>
@@ -42,17 +51,17 @@
               <stop offset="1" stop-color="#bcbcc8"/>
             </radialGradient>
             <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0"   stop-color="#fff3cf" stop-opacity="1"/>
-              <stop offset=".55" stop-color="#ffe09a" stop-opacity=".7"/>
-              <stop offset="1"   stop-color="#ffce7a" stop-opacity="0"/>
+              <stop offset="0"   style="stop-color:var(--light-glow-1, #fff3cf)" stop-opacity="1"/>
+              <stop offset=".55" style="stop-color:var(--light-glow-2, #ffe09a)" stop-opacity=".7"/>
+              <stop offset="1"   style="stop-color:var(--light-glow-3, #ffce7a)" stop-opacity="0"/>
             </radialGradient>
             <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffe6a8" stop-opacity=".55"/>
-              <stop offset="1" stop-color="#ffe6a8" stop-opacity="0"/>
+              <stop offset="0" style="stop-color:var(--light-cone, #ffe6a8)" stop-opacity=".55"/>
+              <stop offset="1" style="stop-color:var(--light-cone, #ffe6a8)" stop-opacity="0"/>
             </linearGradient>
             <radialGradient id="pool" cx="50%" cy="50%" r="50%">
-              <stop offset="0" stop-color="#ffe7a6" stop-opacity=".5"/>
-              <stop offset="1" stop-color="#ffe7a6" stop-opacity="0"/>
+              <stop offset="0" style="stop-color:var(--light-pool, #ffe7a6)" stop-opacity=".5"/>
+              <stop offset="1" style="stop-color:var(--light-pool, #ffe7a6)" stop-opacity="0"/>
             </radialGradient>
             <radialGradient id="knob" cx="36%" cy="30%" r="76%">
               <stop offset="0"   stop-color="#ffffff"/>
@@ -92,7 +101,7 @@
             <path class="shade shade--off" d="M147,116 L213,116 Q221,116 223,124 L246,229 Q248,236 241,237 Q180,251 119,237 Q112,236 114,229 L137,124 Q139,116 147,116 Z" fill="url(#shadeOff)"/>
             <path class="shade shade--on"  d="M147,116 L213,116 Q221,116 223,124 L246,229 Q248,236 241,237 Q180,251 119,237 Q112,236 114,229 L137,124 Q139,116 147,116 Z" fill="url(#shadeOn)"/>
             <!-- bright warm rim along the bottom lip, on only -->
-            <path class="lamp_light rim" d="M119,236 Q180,250 241,236" fill="none" stroke="#fff1c6" stroke-width="3.5" stroke-linecap="round" opacity="0"/>
+            <path class="lamp_light rim" d="M119,236 Q180,250 241,236" fill="none" style="stroke:var(--light-rim, #fff1c6)" stroke-width="3.5" stroke-linecap="round" opacity="0"/>
 
             <!-- face : sleeping -->
             <g class="face face--off">
@@ -149,7 +158,6 @@
           </g>
         </svg>
       </div>
-    </section>
     </section>
   </div>
 

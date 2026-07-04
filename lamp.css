@@ -43,6 +43,60 @@
   /* comment         */
   --c-pn: #d4d4d4;
   /* punctuation     */
+
+  /* light color : yellow is the default until the switch changes it */
+  --light-glow-1: #fff3cf;
+  --light-glow-2: #ffe09a;
+  --light-glow-3: #ffce7a;
+  --light-cone: #ffe6a8;
+  --light-pool: #ffe7a6;
+  --light-rim: #fff1c6;
+}
+
+/* ── light color themes, picked via the color-picker (sets body[data-light-color]) ── */
+body[data-light-color="yellow"] {
+  --light-glow-1: #fff3cf;
+  --light-glow-2: #ffe09a;
+  --light-glow-3: #ffce7a;
+  --light-cone: #ffe6a8;
+  --light-pool: #ffe7a6;
+  --light-rim: #fff1c6;
+}
+
+body[data-light-color="pink"] {
+  --light-glow-1: #ffe3f2;
+  --light-glow-2: #ff9ecf;
+  --light-glow-3: #ff7ab8;
+  --light-cone: #ffbcdf;
+  --light-pool: #ffc3e2;
+  --light-rim: #ffe6f3;
+}
+
+body[data-light-color="orange"] {
+  --light-glow-1: #ffe9cf;
+  --light-glow-2: #ffb366;
+  --light-glow-3: #ff8c3d;
+  --light-cone: #ffcb94;
+  --light-pool: #ffcf9c;
+  --light-rim: #ffedd8;
+}
+
+body[data-light-color="blue"] {
+  --light-glow-1: #dfefff;
+  --light-glow-2: #7ec5ff;
+  --light-glow-3: #4fa8ff;
+  --light-cone: #aad8ff;
+  --light-pool: #b3ddff;
+  --light-rim: #e8f4ff;
+}
+
+body[data-light-color="green"] {
+  --light-glow-1: #e6ffdb;
+  --light-glow-2: #8ee06b;
+  --light-glow-3: #5bc93f;
+  --light-cone: #bcf0a5;
+  --light-pool: #c4f0af;
+  --light-rim: #eeffe4;
 }
 
 * {
@@ -109,6 +163,63 @@ body {
   letter-spacing: -0.01em;
   color: #f4f4f8;
   text-shadow: 0 4px 30px rgba(180, 200, 255, .16);
+}
+
+/* ── COLOR PICKER : switch the light's color, upper-right ────────────────
+   A small pill of swatches, glassy like the rest of the scene. Disabled
+   (dimmed + inert) whenever the lamp itself is off — there is no light to
+   recolor. ────────────────────────────────────────────────────────────── */
+.color-picker {
+  position: absolute;
+  top: max(26px, env(safe-area-inset-top));
+  right: 16px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .35);
+  transition: opacity .25s var(--ease), filter .25s var(--ease);
+}
+
+.color-picker[data-disabled="true"] {
+  opacity: .35;
+  filter: grayscale(.65);
+}
+
+.color-dot {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .3);
+  background: var(--dot);
+  cursor: pointer;
+  transition: transform .15s var(--ease), border-color .15s var(--ease), box-shadow .15s var(--ease);
+}
+
+.color-dot:hover:not(:disabled) {
+  transform: scale(1.16);
+}
+
+.color-dot:disabled {
+  cursor: not-allowed;
+}
+
+.color-dot[aria-pressed="true"] {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .25), 0 0 10px var(--dot);
+  transform: scale(1.16);
+}
+
+.color-dot:focus-visible {
+  outline: 2px solid #bcd0ff;
+  outline-offset: 2px;
 }
 
 /* ── STAGE : the lamp ──────────────────────────────────────────────────── */
